@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>변호사보수 계산기</title>
+<style>
+.container {
+    text-align: center;
+}
+
+.box {
+    border: 2px solid #ccc;
+    background-color: yellow;
+    border-radius: 8px;
+    padding: 20px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.box-title {
+    background-color: #f0f0f0;
+    padding: 30px;
+    border-radius: 8px 8px 0 0;
+}
+
+.input-container {
+    margin-bottom: 100px; /* 소가 입력과 버튼 사이의 간격 조정 */
+    margin-bottom: 100px; /* 변호사보수계산기와 계산하기 사이의 간격 조정 */
+}
+
+button {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.result-container {
+    margin-top: 100px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <div class="box-title">
+            <h2>변호사보수계산기</h2>
+        </div>
+        <div class="input-container">
+            <label for="amount">소가 입력:</label>
+            <input type="number" id="amount" name="amount">
+            <button onclick="calculate()">계산하기</button>
+        </div>
+        <div class="result-container">
+            <p id="result"></p>
+            <button onclick="reset()">리셋</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// 콤마를 포함하여 숫자를 표시하는 함수
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function calculate() {
+    var amount = parseInt(document.getElementById("amount").value);
+    var result;
+
+    if (amount <= 3000000) {
+        result = 300000;
+    } else if (amount <= 20000000) {
+        result = 300000 + (amount - 3000000) * 10 / 100;
+    } else if (amount <= 50000000) {
+        result = 2000000 + (amount - 20000000) * 8 / 100;
+    } else if (amount <= 100000000) {
+        result = 4400000 + (amount - 50000000) * 6 / 100;
+    } else if (amount <= 150000000) {
+        result = 7400000 + (amount - 100000000) * 4 / 100;
+    } else if (amount <= 200000000) {
+        result = 9400000 + (amount - 150000000) * 2 / 100;
+    } else if (amount <= 500000000) {
+        result = 10400000 + (amount - 200000000) * 1 / 100;
+    } else {
+        result = 13400000 + (amount - 500000000) * 0.5 / 100;
+    }
+
+    document.getElementById("result").innerHTML = "결과: " + numberWithCommas(Math.floor(result)) + "원";
+}
+
+function reset() {
+    document.getElementById("amount").value = "";
+    document.getElementById("result").innerHTML = "";
+}
+</script>
+</body>
+</html>
