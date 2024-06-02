@@ -15,9 +15,9 @@ body {
 .container {
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* 상단 정렬로 변경 */
-    min-height: 80vh; /* 높이 조정 */
-    padding-top: 40px; /* 상단 패딩 추가 */
+    align-items: flex-start;
+    min-height: 80vh;
+    padding-top: 40px;
 }
 
 .box {
@@ -28,6 +28,7 @@ body {
     width: 100%;
     max-width: 360px;
     padding: 20px;
+    position: relative;
 }
 
 .box-title {
@@ -67,13 +68,13 @@ button {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-    font-size: 20px; /* 글씨 크기를 20px로 증가 */
+    font-size: 20px;
     transition: all 0.2s ease-in-out;
 }
 
 button:hover {
     background-color: #0056b3;
-    transform: scale(1.1); /* 버튼 커지기 */
+    transform: scale(1.1);
 }
 
 .result-container {
@@ -87,6 +88,26 @@ button:hover {
 .result {
     font-size: 20px;
     color: #333;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.promotion-container {
+    margin-top: 80px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    animation: zoomIn 1s ease-in-out;
 }
 </style>
 
@@ -106,10 +127,13 @@ button:hover {
             <p id="result" class="result"></p>
             <button onclick="reset()">다시 계산</button>
         </div>
+        <div class="promotion-container">
+            <p>법무법인 진성</p>
+            <p>전화번호 02-598-5888</p>
+        </div>
     </div>
 </div>
 <script>
-// 콤마를 포함하여 숫자를 표시하는 함수
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
